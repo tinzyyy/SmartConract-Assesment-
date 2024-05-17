@@ -1,9 +1,9 @@
 # SmartConract-Assesment-
-This Solidity smart contract, named PharmacyInventory, is developed to establish an efficient inventory management system tailored for pharmacies, facilitating seamless tracking and handling of medicine stock on the Ethereum blockchain.
+This Solidity smart contract, named `PharmacyInventory`, is developed to establish an efficient inventory management system tailored for pharmacies, facilitating seamless tracking and handling of medicine stock on the Ethereum blockchain.
 
 ## Description
 
-This contract demonstrates the usage of require(), assert(), and revert() statements for error handling.
+This contract demonstrates the usage of `require()`, `assert()`, and `revert()` statements for error handling.
 
 ### Requirements
 
@@ -13,17 +13,17 @@ This contract demonstrates the usage of require(), assert(), and revert() statem
 
 ### Component and Functionality
 
-'addMedicine:' A function that adds a new medicine to the inventory. It takes parameters for the medicine's name, price, and initial stock, and it's accessible only by the owner.
+`addMedicine:` A function that adds a new medicine to the inventory. It takes parameters for the medicine's name, price, and initial stock, and it's accessible only by the owner.
 
-purchaseMedicine: This function allows customers to buy medicine from the inventory. It takes the name of the medicine and the quantity to purchase as parameters. The function checks if the medicine exists and if there is enough stock available. If so, it deducts the purchased quantity from the stock and transfers the payment to the owner.
+`purchaseMedicine:` This function allows customers to buy medicine from the inventory. It takes the name of the medicine and the quantity to purchase as parameters. The function checks if the medicine exists and if there is enough stock available. If so, it deducts the purchased quantity from the stock and transfers the payment to the owner.
 
-checkStock: A function that checks the stock of a specific medicine. It takes the name of the medicine as a parameter and returns the current stock level.
+`checkStock:` A function that checks the stock of a specific medicine. It takes the name of the medicine as a parameter and returns the current stock level.
 
-medicineCount: A public variable that keeps track of the total number of medicines in the inventory.
+`medicineCount:` A public variable that keeps track of the total number of medicines in the inventory.
 
-medicines: A mapping that stores information about each medicine, including its name, price, and current stock level.
+`medicines:` A mapping that stores information about each medicine, including its name, price, and current stock level.
 
-owner: An address variable representing the owner or administrator of the Pharmacy Inventory system.
+`owner:` An address variable representing the owner or administrator of the Pharmacy Inventory system.
 
 ### Modifiers 
 
@@ -39,6 +39,7 @@ To interact with this contract, you can deploy it on Remix Ethereum IDE or any E
 4. Deploy the contract.
 5. Interact with the deployed contract by calling its functions.
 
+```Solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -71,7 +72,7 @@ contract PharmacyInventory {
 
     // Purchase medicine
     function purchaseMedicine(string memory _medicineName, uint256 _quantity) public payable {
-        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist"); // Check if medicine exists
+        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist"); 
         Medicine storage medicine = medicines[_medicineName];
 
         require(_quantity > 0, "Quantity must be greater than zero");
@@ -83,10 +84,12 @@ contract PharmacyInventory {
 
    //  Check the stock of a medicine
     function checkStock(string memory _medicineName) public view returns (uint256) {
-        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist"); // Check if medicine exists
+        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist");
         return medicines[_medicineName].stock;
     }
 }
+
+```
 
 This is the whole functionality within the code itself and the generalization of how the code will run.
 
