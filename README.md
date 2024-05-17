@@ -13,7 +13,7 @@ This contract demonstrates the usage of require(), assert(), and revert() statem
 
 ### Component and Functionality
 
-"addMedicine:" A function that adds a new medicine to the inventory. It takes parameters for the medicine's name, price, and initial stock, and it's accessible only by the owner.
+'addMedicine:' A function that adds a new medicine to the inventory. It takes parameters for the medicine's name, price, and initial stock, and it's accessible only by the owner.
 
 purchaseMedicine: This function allows customers to buy medicine from the inventory. It takes the name of the medicine and the quantity to purchase as parameters. The function checks if the medicine exists and if there is enough stock available. If so, it deducts the purchased quantity from the stock and transfers the payment to the owner.
 
