@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract PharmacyInventory {
+    address public owner;
+
+    struct Medicine {
+        string name;
+        uint256 price; 
+        uint256 stock;
+    }
+
+    mapping(string => Medicine) public medicines;
+    uint256 public medicineCount;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can perform this action");
+        _;
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Add a new medicine to the inventory
+    function addMedicine(string memory _medicineName, uint256 _price, uint256 _stock) public onlyOwner {
+        medicines[_medicineName] = Medicine(_medicineName, _price, _stock);
+        medicineCount++;
+    }
+
+    // Purchase medicine
+    function purchaseMedicine(string memory _medicineName, uint256 _quantity) public payable {
+        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist"); // Check if medicine exists
+        Medicine storage medicine = medicines[_medicineName];
+
+        require(_quantity > 0, "Quantity must be greater than zero");
+        require(medicine.stock >= _quantity, "Not enough stock");
+
+        medicine.stock -= _quantity;
+        payable(owner).transfer(medicine.price * _quantity);
+    }
+
+   //  Check the stock of a medicine
+    function checkStock(string memory _medicineName) public view returns (uint256) {
+        require(bytes(medicines[_medicineName].name).length > 0, "Medicine does not exist"); // Check if medicine exists
+        return medicines[_medicineName].stock;
+    }
+}
